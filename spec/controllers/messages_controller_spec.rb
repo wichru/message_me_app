@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe MessagesController, type: :controller do
   describe 'signed user' do
     before do
-      user = User.create(username: 'John', password: 'test123')
+      user = User.create!(username: 'John', password: 'test123')
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
     end
 
     describe 'GET #create' do

@@ -11,12 +11,23 @@ RSpec.describe ChatroomController, type: :controller do
   end
 
   describe 'signed user' do
-    let(:user) { User.new(username: 'John', password: 'Bonjovi') }
+    before do
+      user = User.new(username: 'John', password: 'Bonjovi')
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+    end
 
     it 'returns http success' do
-      log_in user
       get :index
       expect(response).to have_http_status(:success)
+    end
+
+    it 'fetch message' do
+      Message.create(body: 'Hello')
+
+      get :index
+
+      expect(assigns(:message)).to be_a_new(Message)
+      expect(assigns(:messages)).to match_array(Message.all)
     end
   end
 end

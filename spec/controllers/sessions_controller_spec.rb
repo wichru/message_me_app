@@ -5,13 +5,20 @@ RSpec.describe SessionsController, type: :controller do
     @user = User.create(username: 'John', password: 'test123')
   end
 
-  describe 'POST #create' do
-    context 'when user has valid params' do
-      before do
-        create_user
-        post :create, params: { session: { username: @user.username, password: @user.password } }
-      end
+  let(:create_session) do
+    post :create, params: { session: { username: username, password: password } }
+  end
 
+  let(:username) { @user.username }
+  let(:password) { @user.password }
+
+  describe 'POST #create' do
+    before(:each) do
+      create_user
+      create_session
+    end
+
+    context 'when user has valid params' do
       it 'redirect to the root path' do
         expect(response).to redirect_to(root_path)
         expect(flash[:success]).to eq('You have successfully logged in')
@@ -19,7 +26,7 @@ RSpec.describe SessionsController, type: :controller do
 
       context 'when user is already logged in' do
         it 'redirect to the root path and shows an error' do
-          post :create, params: { session: { username: @user.username, password: @user.password } }
+          post :create, params: { session: { username: username, password: password } }
 
           expect(flash[:error]).to eq('You are already logged in')
           expect(response).to redirect_to(root_path)
@@ -28,10 +35,7 @@ RSpec.describe SessionsController, type: :controller do
     end
 
     context 'when user has invalid params' do
-      before do
-        create_user
-        post :create, params: { session: { username: @user.username, password: 'somepass' } }
-      end
+      let(:password) { 'somepass' }
 
       it 'render new action' do
         expect(assigns(:user)).not_to eq create_user
@@ -55,7 +59,7 @@ RSpec.describe SessionsController, type: :controller do
     context 'when user want to log out' do
       it 'redirect to login with message' do
         create_user
-        post :create, params: { session: { username: @user.username, password: @user.password } }
+        create_session
         delete :destroy, session: { user_id: nil }
 
         expect(response).to redirect_to(login_path)

@@ -6,12 +6,24 @@ RSpec.describe SessionsController, type: :controller do
   end
 
   describe 'POST #create' do
-    context 'when user is logged in' do
-      it 'loads correct user details and redirect to the root path' do
+    context 'when user has valid params' do
+      before do
         create_user
         post :create, params: { session: { username: @user.username, password: @user.password } }
+      end
+
+      it 'redirect to the root path' do
         expect(response).to redirect_to(root_path)
         expect(flash[:success]).to eq('You have successfully logged in')
+      end
+
+      context 'when user is already logged in' do
+        it 'redirect to the root path and shows an error' do
+          post :create, params: { session: { username: @user.username, password: @user.password } }
+
+          expect(flash[:error]).to eq('You are already logged in')
+          expect(response).to redirect_to(root_path)
+        end
       end
     end
 

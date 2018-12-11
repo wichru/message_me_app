@@ -2,11 +2,12 @@ require 'rails_helper'
 
 RSpec.describe ChatroomController, type: :controller do
   describe 'not signed user' do
-    it 'redirects to login path' do
+    it 'redirects to login path with error message' do
       get :index
 
       expect(response).to redirect_to(controller: 'sessions',
                                       action: 'new')
+      expect(flash[:error]).to eq 'You must be logged in to perform that action'
     end
   end
 

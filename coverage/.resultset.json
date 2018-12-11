@@ -223,35 +223,13 @@
         1,
         null
       ],
-      "/Users/Pan_Maciej/message_me_app/app/controllers/sessions_controller.rb": [
+      "/Users/Pan_Maciej/message_me_app/app/controllers/chatroom_controller.rb": [
         1,
         1,
         null,
         1,
-        null,
-        1,
-        4,
-        4,
         2,
         2,
-        2,
-        null,
-        2,
-        2,
-        null,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        1,
-        5,
-        0,
-        0,
-        null,
         null,
         null
       ],
@@ -260,17 +238,17 @@
         1,
         null,
         1,
-        5,
+        1,
         null,
         null,
         1,
-        5,
+        3,
         null,
         null,
         1,
-        0,
-        0,
-        0,
+        3,
+        1,
+        1,
         null,
         null,
         null
@@ -286,8 +264,14 @@
         1,
         1,
         null
+      ],
+      "/Users/Pan_Maciej/message_me_app/app/models/message.rb": [
+        1,
+        1,
+        1,
+        null
       ]
     },
-    "timestamp": 1544490762
+    "timestamp": 1544491449
   }
 }

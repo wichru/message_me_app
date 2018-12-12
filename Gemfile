@@ -30,6 +30,8 @@ gem 'jquery-rails'
 gem 'bcrypt', '~> 3.1.7'
 gem 'hirb'
 gem 'simplecov', require: false, group: :test
+gem 'simple_form'
+
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

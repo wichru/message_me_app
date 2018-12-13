@@ -1,5 +1,9 @@
-<%= simple_form_for @user, url: sign_up_path do |f| %>
-  <%= f.input :username %>
-  <%= f.input :password_digest %>
-  <%= f.button :submit %>
+<%= simple_form_for @user, url: sign_up_path, html: { class: 'ui fluid form' } do |f| %>
+  <h2>Sign up</h2>
+  <%= f.input :username, placeholder: 'username', class: 'field' %>
+  <div class="ui divider"></div>
+  <%= f.input :password, placeholder: 'password', class: 'field' %>
+  <p>
+    <%= f.button :submit, class: 'ui primary button' %>
+  </p>
 <% end %>

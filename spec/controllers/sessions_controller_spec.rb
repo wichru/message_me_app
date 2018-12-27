@@ -43,7 +43,7 @@ RSpec.describe SessionsController, type: :controller do
       end
 
       it 'shows error message' do
-        expect(flash[:error]).to eq('There was something wrong with your login')
+        expect(flash[:error]).to eq('incorect password or email try again')
       end
     end
   end

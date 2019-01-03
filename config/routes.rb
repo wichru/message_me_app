@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   post 'message', to: 'messages#create'
   get 'sign_up', to: 'registration#new'
   post 'sign_up', to: 'registration#create'
+
+  mount ActionCable.server, at: 'cable'
 end
